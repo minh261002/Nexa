@@ -15,6 +15,13 @@ export const ad = mutation({
     if (identity == null) {
       throw new Error("Unauthorized");
     }
+
+    const orgId = identity.orgId as string;
+
+    if (!orgId) {
+      throw new Error("Missing Organization ID");
+    }
+
     const userId = await ctx.db.insert("users", {
       name: "Minh Tran",
     });
